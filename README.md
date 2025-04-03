@@ -1,4 +1,51 @@
-### Verion
+### Guide
+
+How to use?
+```
+local verionCore = loadstring(game:HttpGet("https://raw.githubusercontent.com/q93hdbalalsnxoem2030020dk/Verion/refs/heads/main/Verion"))()
+local VerionNot = loadstring(game:HttpGet("https://raw.githubusercontent.com/q93hdbalalsnxoem2030020dk/Verion/refs/heads/main/VerionNot"))()
+
+local verion = verionCore()
+
+verion.script([[
+
+YOUR SCRIPT HERE, Without indentation or with indentation.
+
+]])
+
+-- Bypass & Execute:
+verion.protect()
+verion.script_load()
+
+-- Verion statistics.
+local stats = verion.get_stats()
+print("ban attempts: " .. stats.BanAttempts)
+print("kick attempts: " .. stats.KickAttempts)
+print("protected UserId / UUID: " .. stats.UserId)
+
+VerionNot()
+```
+
+> [!TIP]
+> How to execute another script after executing the first one?
+>
+*Simple!*
+
+```
+local verionCore = loadstring(game:HttpGet("https://raw.githubusercontent.com/q93hdbalalsnxoem2030020dk/Verion/refs/heads/main/Verion"))()
+local verion = verionCore()
+
+verion.script([[
+
+YOUR SCRIPT HERE, Without indentation or with indentation.
+
+]])
+
+-- Execute Only
+verion.script_load()
+```
+
+### Verion GetStats()
 
 Use this to get stats about the Verion instance:
 
