@@ -1,0 +1,95 @@
+--[[
+by sxc_qq1
+]]
+
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "NotificationGui"
+screenGui.Parent = CoreGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 150)
+frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BackgroundTransparency = 1
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 20)
+uiCorner.Parent = frame
+
+local uiStroke = Instance.new("UIStroke")
+uiStroke.Color = Color3.new(1, 1, 1)
+uiStroke.Thickness = 2
+uiStroke.Transparency = 1
+uiStroke.Parent = frame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0.25, 0)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Verion"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.TextScaled = true
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextTransparency = 1
+titleLabel.Parent = frame
+
+local messageLabel = Instance.new("TextLabel")
+messageLabel.Size = UDim2.new(1, -20, 0.5, 0)
+messageLabel.Position = UDim2.new(0, 10, 0.3, 0)
+messageLabel.BackgroundTransparency = 1
+messageLabel.Text = "Verion is not 100% guaranteed to bypass anticheat, so don't risk it. "
+messageLabel.TextColor3 = Color3.new(1, 1, 1)
+messageLabel.TextScaled = true
+messageLabel.Font = Enum.Font.Gotham
+messageLabel.TextXAlignment = Enum.TextXAlignment.Left
+messageLabel.TextYAlignment = Enum.TextYAlignment.Top
+messageLabel.TextTransparency = 1
+messageLabel.Parent = frame
+
+local creditLabel = Instance.new("TextLabel")
+creditLabel.Size = UDim2.new(1, 0, 0.2, 0)
+creditLabel.Position = UDim2.new(0, 0, 0.8, 0)
+creditLabel.BackgroundTransparency = 1
+creditLabel.Text = "By Yx.GG | @sxc_qq1"
+creditLabel.TextColor3 = Color3.new(1, 1, 1)
+creditLabel.TextScaled = true
+creditLabel.Font = Enum.Font.GothamSemibold
+creditLabel.TextTransparency = 1
+creditLabel.Parent = frame
+
+local tweenInfoFade = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+local fadeInTweens = {}
+
+fadeInTweens[#fadeInTweens+1] = TweenService:Create(frame, tweenInfoFade, {BackgroundTransparency = 0})
+fadeInTweens[#fadeInTweens+1] = TweenService:Create(uiStroke, tweenInfoFade, {Transparency = 0})
+fadeInTweens[#fadeInTweens+1] = TweenService:Create(titleLabel, tweenInfoFade, {TextTransparency = 0})
+fadeInTweens[#fadeInTweens+1] = TweenService:Create(messageLabel, tweenInfoFade, {TextTransparency = 0})
+fadeInTweens[#fadeInTweens+1] = TweenService:Create(creditLabel, tweenInfoFade, {TextTransparency = 0})
+
+for _, tween in ipairs(fadeInTweens) do
+    tween:Play()
+end
+
+delay(7, function()
+    local tweenInfoFadeOut = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+    local fadeOutTweens = {}
+
+    fadeOutTweens[#fadeOutTweens+1] = TweenService:Create(frame, tweenInfoFadeOut, {BackgroundTransparency = 1})
+    fadeOutTweens[#fadeOutTweens+1] = TweenService:Create(uiStroke, tweenInfoFadeOut, {Transparency = 1})
+    fadeOutTweens[#fadeOutTweens+1] = TweenService:Create(titleLabel, tweenInfoFadeOut, {TextTransparency = 1})
+    fadeOutTweens[#fadeOutTweens+1] = TweenService:Create(messageLabel, tweenInfoFadeOut, {TextTransparency = 1})
+    fadeOutTweens[#fadeOutTweens+1] = TweenService:Create(creditLabel, tweenInfoFadeOut, {TextTransparency = 1})
+
+    for _, tween in ipairs(fadeOutTweens) do
+        tween:Play()
+    end
+
+    wait(1)
+    screenGui:Destroy()
+end)
